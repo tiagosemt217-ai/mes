@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1 mês</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #171a34;
+    --night-deep: #0f1226;
+    --lavender: #b6adde;
+    --blush: #f0b9a4;
+    --gold: #e9c581;
+    --cream: #f6f1e8;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--night);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(182,173,222,0.10), transparent 45%),
+      radial-gradient(ellipse at 80% 30%, rgba(240,185,164,0.08), transparent 40%),
+      linear-gradient(180deg, var(--night-deep), var(--night) 40%, var(--night-deep));
+    color: var(--cream);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .stars{
+    position: fixed; inset:0; pointer-events:none; z-index:0;
+  }
+  .stars span{
+    position:absolute; width:2px; height:2px; background:var(--cream);
+    border-radius:50%; opacity:.5;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle{ 0%,100%{opacity:.15} 50%{opacity:.85} }
+
+  section{ position:relative; z-index:1; max-width: 620px; margin: 0 auto; padding: 6rem 1.5rem; }
+
+  h1,h2,.serif{ font-family:'Cormorant Garamond', serif; font-weight:500; }
+
+  /* HERO */
+  .hero{ min-height: 92vh; min-height: 92dvh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top: 4rem; }
+  .moon-wrap{ width:150px; height:150px; margin-bottom: 2.2rem; }
+  .moon-wrap svg{ width:100%; height:100%; }
+  .moon-glow{ filter: drop-shadow(0 0 24px rgba(233,197,129,0.45)); }
+  .eyebrow{ letter-spacing: 0.04em; color: var(--lavender); font-size: 0.95rem; margin-bottom: 0.6rem; opacity:0; animation: rise 1s ease forwards 0.2s; }
+  .hero h1{ font-size: clamp(3.2rem, 13vw, 5.5rem); line-height: 0.95; margin: 0; color: var(--cream); opacity:0; animation: rise 1.1s ease forwards 0.5s; }
+  .hero .date{ margin-top: 1rem; font-size: 1.05rem; color: var(--blush); font-style: italic; font-family:'Cormorant Garamond', serif; opacity:0; animation: rise 1s ease forwards 0.9s; }
+  @keyframes rise{ from{ opacity:0; transform: translateY(14px);} to{ opacity:1; transform:none; } }
+  .scroll-hint{ margin-top: 3.5rem; font-size: 0.75rem; color: var(--lavender); opacity: .6; }
+
+  /* LETTER */
+  .letter p{ font-size: 1.15rem; line-height: 1.85; color: var(--cream); margin: 0 0 1.4rem; }
+  .letter .drop{ font-family:'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); font-style: italic; }
+  .signoff{ margin-top: 2.5rem; font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; color: var(--blush); }
+
+  /* SMALL THINGS */
+  .things h2{ font-size: 2rem; color: var(--cream); margin-bottom: 2rem; text-align:center; }
+  .things ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap: 1.1rem; }
+  .things li{ display:flex; gap: 0.9rem; align-items:flex-start; font-size: 1.05rem; line-height:1.6; color: var(--cream); }
+  .things li::before{ content:"·"; color: var(--gold); font-size: 1.8rem; line-height: 0.6; margin-top: 0.15rem; }
+
+  /* MUSIC */
+  .music{ text-align:center; padding-bottom: 7rem; }
+  .music h2{ font-size: 1.9rem; margin-bottom: 0.3rem; }
+  .music .track{ color: var(--lavender); font-size: 1rem; margin-bottom: 2rem; }
+  .vinyl{ width: 130px; height:130px; margin: 0 auto 2rem; border-radius:50%;
+    background: repeating-radial-gradient(circle at center, #2a2e52 0 3px, #1b1e3a 4px 7px);
+    border: 1px solid rgba(233,197,129,0.25);
+    display:flex; align-items:center; justify-content:center;
+    animation: spin 9s linear infinite;
+  }
+  .vinyl .label{ width:44px; height:44px; border-radius:50%; background: var(--blush); }
+  @keyframes spin{ from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+  .listen-btn{
+    display:inline-block; text-decoration:none; color: var(--night-deep);
+    background: var(--gold); padding: 0.85rem 2.1rem; border-radius: 999px;
+    font-family:'Work Sans', sans-serif; font-weight:500; font-size: 0.95rem;
+    letter-spacing: 0.01em; transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 8px 22px rgba(233,197,129,0.18);
+  }
+  .listen-btn:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(233,197,129,0.28); }
+  .music .footnote{ margin-top: 2.5rem; font-size: 0.85rem; color: var(--lavender); opacity: .55; }
+
+  @media (max-width: 480px){
+    section{ padding: 4.5rem 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<section class="hero">
+  <div class="moon-wrap">
+    <svg viewBox="0 0 100 100" class="moon-glow">
+      <defs>
+        <clipPath id="crescentClip">
+          <circle cx="50" cy="50" r="34"/>
+        </clipPath>
+      </defs>
+      <circle cx="50" cy="50" r="34" fill="#2a2e52" opacity="0.4"/>
+      <g clip-path="url(#crescentClip)">
+        <circle cx="50" cy="50" r="34" fill="#f3e6c4"/>
+        <circle cx="38" cy="50" r="34" fill="#171a34"/>
+      </g>
+    </svg>
+  </div>
+  <div class="eyebrow">um ciclo inteiro da lua depois</div>
+  <h1>1 mês</h1>
+  <div class="date">24 de agosto de 2026</div>
+  <div class="scroll-hint">role para ver ↓</div>
+</section>
+
+<section class="letter">
+  <p><span class="drop">Faz um mês</span> que a gente decidiu começar essa história. Parece pouco tempo quando eu olho pro calendário — só quatro semanas, só trinta e poucos dias — mas quando eu paro pra sentir, percebo que foi tempo suficiente pra mudar a forma como eu vejo o meu dia inteiro. De repente eu comecei a guardar as coisas engraçadas que acontecem comigo só pra te contar depois. Comecei a olhar pro celular esperando sua mensagem sem nem perceber que estava esperando. Pequenas mudanças, quase invisíveis, que só fazem sentido quando eu junto todas elas e vejo o que formaram.</p>
+
+  <p>Foi um mês de aprender você aos poucos: o jeito que você fala quando está cansado, a cara que você faz quando finge que não gostou de um elogio, as coisas que te fazem rir de verdade — aquele riso que não dá pra segurar — e as que só arrancam um sorriso educado. Aprendi que você tem um jeito só seu de contar as coisas, de começar pelo final e voltar pro início, e que eu prefiro ouvir assim do que de qualquer outra forma. Foi um mês de descobrir que gosto de saber dessas pequenas diferenças, porque cada uma delas é um pedacinho a mais de quem você é — e eu quero conhecer todos eles, com calma, sem pressa nenhuma.</p>
+
+  <p>Teve noite que a conversa ia durar cinco minutinhos antes de dormir e virou madrugada, sem a gente perceber o tempo passando. Teve mensagem que começou séria e terminou os dois rindo sozinhos na frente da tela. Teve também os silêncios — aqueles que não pesam, que só significam que dá pra estar perto sem precisar preencher tudo com palavras. Isso também eu fui aprendendo a gostar: que nem todo momento bom precisa ser barulhento, que às vezes o mais bonito é só existir do lado de alguém e sentir que tudo bem ficar quieto.</p>
+
+  <p>Teve também os dias mais simples, aqueles que na hora nem pareciam especiais — uma ligação boba no meio da tarde, um "como foi seu dia" que virou conversa longa, um "está tudo bem?" mandado na hora certa. São esses dias comuns que, juntos, formam a base de tudo. Não são as datas marcadas no calendário que sustentam uma relação, são esses pequenos gestos repetidos, dia após dia, até virarem hábito, até virarem certeza.</p>
+
+  <p>Eu também aprendi sobre mim nesse mês. Aprendi que eu sou mais paciente do que pensava, que consigo ouvir sem pressa pra responder, que tem coisa que eu queria mudar em mim e que, do seu lado, fica mais fácil tentar. Relação também é isso: um espelho gentil que mostra quem a gente pode ser quando se sente segura pra tentar.</p>
+
+  <p>Não é sobre ter tudo resolvido, nem sobre saber exatamente onde isso vai dar. Ainda estamos no começo, ainda tem muita coisa pra descobrir, muita conversa pra ter, muitos "e se" pra responder com o tempo. Mas é exatamente isso que me deixa tranquila: não precisar ter pressa. É sobre estar feliz de estar descobrindo, um dia de cada vez, o que a gente pode construir juntos. É sobre gostar de quem eu sou quando estou com você, e gostar ainda mais de quem a gente está se tornando, aos poucos, sem forçar nada.</p>
+
+  <p>Se o primeiro mês já foi capaz de virar tudo isso — rotina boa, saudade nova, vontade de contar cada detalhe do meu dia pra você antes de qualquer outra pessoa, risada fácil, silêncio confortável, presença que já parece familiar — eu não consigo nem imaginar o tamanho do que vem depois. E talvez seja exatamente por isso que eu queira continuar: não porque já sei como essa história termina, mas porque tenho muita vontade de descobrir junto com você.</p>
+
+  <div class="signoff">com muito carinho e amor.</div>
+</section>
+
+<section class="things">
+  <h2>Pedacinhos deste mês</h2>
+  <ul>
+    <li>As primeiras conversas que não queriam terminar</li>
+    <li>Aquele nervosismo bom de antes de te ver</li>
+    <li>Rir de coisa boba até doer o rosto</li>
+    <li>Aprender o jeitinho que você tem de fazer tudo</li>
+    <li>Sentir falta mesmo tendo se visto no mesmo dia</li>
+    <li>Perceber que "a gente" já virou palavra natural</li>
+  </ul>
+</section>
+
+<section class="music">
+  <h2>Pra fechar</h2>
+
+  <div class="spotify-card" style="
+    max-width: 320px; margin: 0 auto; background: #16162a;
+    border-radius: 14px; padding: 1.4rem; box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    text-align: left;
+  ">
+    <div style="width:100%; aspect-ratio: 1/1; border-radius: 8px; overflow:hidden; margin-bottom: 1rem; background: #2a2e52;">
+      <img src="system-of-a-down-hypnotize.jpg" alt="capa" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+
+    <div style="font-family:'Work Sans',sans-serif; color:#f6f1e8; font-weight:500; font-size:1rem;">Lonely Day</div>
+    <div style="font-family:'Work Sans',sans-serif; color:#9a97b8; font-size:0.85rem; margin-bottom:1rem;">System of a Down</div>
+
+    <audio id="track" src="gravado por mim.mp3" preload="metadata"></audio>
+
+    <div id="progressBar" style="width:100%; height:4px; background:#33324f; border-radius:2px; cursor:pointer; margin-bottom:0.4rem;">
+      <div id="progressFill" style="height:100%; width:0%; background:#e9c581; border-radius:2px;"></div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; font-family:'Work Sans',sans-serif; font-size:0.72rem; color:#9a97b8; margin-bottom:1rem;">
+      <span id="curTime">0:00</span>
+      <span id="durTime">0:00</span>
+    </div>
+
+    <div style="display:flex; justify-content:center;">
+      <button id="playBtn" style="
+        width:46px; height:46px; border-radius:50%; border:none;
+        background:#e9c581; color:#0f1226; font-size:1.1rem; cursor:pointer;
+        display:flex; align-items:center; justify-content:center;
+      ">▶</button>
+    </div>
+  </div>
+
+  <a class="listen-btn" style="margin-top:1.8rem; display:inline-block;" href="https://systemofadown.lnk.to/listenyd" target="_blank" rel="noopener">abrir no streaming ♪</a>
+  <div class="footnote">feito com carinho para comemorar 1 mês</div>
+</section>
+
+<script>
+  const audio = document.getElementById('track');
+  const playBtn = document.getElementById('playBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const curTime = document.getElementById('curTime');
+  const durTime = document.getElementById('durTime');
+
+  function fmt(t){
+    const m = Math.floor(t/60);
+    const s = Math.floor(t%60).toString().padStart(2,'0');
+    return m+':'+s;
+  }
+
+  playBtn.addEventListener('click', () => {
+    if(audio.paused){ audio.play(); playBtn.textContent = '❙❙'; }
+    else { audio.pause(); playBtn.textContent = '▶'; }
+  });
+
+  audio.addEventListener('loadedmetadata', () => { durTime.textContent = fmt(audio.duration); });
+  audio.addEventListener('timeupdate', () => {
+    curTime.textContent = fmt(audio.currentTime);
+    progressFill.style.width = (audio.currentTime/audio.duration*100) + '%';
+  });
+  audio.addEventListener('ended', () => { playBtn.textContent = '▶'; });
+
+  progressBar.addEventListener('click', (e) => {
+    const rect = progressBar.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+</script>
+
+<script>
+  const starsContainer = document.getElementById('stars');
+  const total = 60;
+  for(let i=0;i<total;i++){
+    const s = document.createElement('span');
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
+    s.style.animationDelay = (Math.random()*4) + 's';
+    s.style.width = s.style.height = (Math.random()*1.5+1) + 'px';
+    starsContainer.appendChild(s);
+  }
+</script>
+</body>
+</html>
